@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="your_primary_color">#66B6DA</color>
+    <color name="your_primary_variant_color">#3F51B5</color>
+    <color name="your_secondary_color">#00BCD4</color>
+    <color name="your_secondary_variant_color">#293897</color>
+    <color name="your_text_color">#000000</color>
+</resources>

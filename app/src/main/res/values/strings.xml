@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">explaining</string>
+    <string name="correct">Correct!</string>
+    <string name="next_question">Next Question</string>
+    <string name="wrong">Wrong!</string>
+    <string name="can_count_till_10">can count till 10?</string>
+    <string name="the_water_has_a_blue_color">the water has a blue color</string>
+    <string name="the_sky_is_blue">the sky is blue?</string>
+</resources>
