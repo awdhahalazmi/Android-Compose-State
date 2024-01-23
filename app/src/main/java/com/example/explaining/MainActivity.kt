@@ -78,7 +78,7 @@ fun TrueFalseGame() {
 
 //the condition of the correct answer
         if (AnsrCorrect && showFeedback ) {
-            AnswerFeedback("Correct!", MaterialTheme.colorScheme.secondary)
+            AnswerFeedback("Correct!", MaterialTheme.colorScheme.secondary, true)
             //CorrectAnswerImage()
             Text(text = "Score: ${userScore.value}")
 
@@ -110,7 +110,7 @@ fun TrueFalseGame() {
             // Keep true and false buttons visible
             showFeedback = true
             // Show feedback for wrong answer
-            AnswerFeedback("Wrong!", MaterialTheme.colorScheme.error)
+            AnswerFeedback("Wrong!", MaterialTheme.colorScheme.error, false)
             //WrongAnswerImage()
 
         }
@@ -180,55 +180,38 @@ fun TrueFalseButton(text: String, showAnswerOptionsRow: () -> Unit) {
 }
 
 @Composable
-fun AnswerFeedback(message: String, backgroundColor: androidx.compose.ui.graphics.Color) {
+fun AnswerFeedback(message: String, backgroundColor: Color, isCorrect: Boolean) {
     Box(
         modifier = Modifier
-
-
             .size(100.dp)
             .clip(CircleShape)
-            .clip(MaterialTheme.shapes.large)
             .background(backgroundColor)
             .padding(16.dp),
-        Alignment.Center
-
-        // contentAlignment = Alignment.Center
-
+        contentAlignment = Alignment.Center
     ) {
-        Column(
-
-            horizontalAlignment = Alignment.CenterHorizontally
-
-
-        ) {
-            Text(
-                text = message,
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onPrimary
-
-            )
+        // Show the correct or wrong answer image based on the 'isCorrect' parameter
+        val imagePainter = if (isCorrect) {
+            painterResource(id = R.drawable.correct_answer)
+        } else {
+            painterResource(id = R.drawable.wrong_answer)
         }
-    }
-    @Composable
-    fun CorrectAnswerImage() {
-        val correctAnswerImage: Painter = painterResource(id = R.drawable.correct_answer)
+
         Image(
-            painter = correctAnswerImage,
-            contentDescription = "Correct Answer Image",
+            painter = imagePainter,
+            contentDescription = if (isCorrect) "Correct Answer Image" else "Wrong Answer Image",
             modifier = Modifier.fillMaxSize()
         )
-    }
 
-    @Composable
-    fun WrongAnswerImage() {
-        val wrongAnswerImage: Painter = painterResource(id = R.drawable.wrong_answer)
-        Image(
-            painter = wrongAnswerImage,
-            contentDescription = "Wrong Answer Image",
-            modifier = Modifier.fillMaxSize()
+        Text(
+            text = message,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onPrimary,
+            modifier = Modifier.padding(top = 8.dp)
         )
     }
 }
+
+
 
 @Preview(showBackground = true)
 @Composable
